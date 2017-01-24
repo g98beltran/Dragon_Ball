@@ -18,8 +18,7 @@ public class batalla {
 			if(atacador == 0){
 				this.atacar(s,p,r,e);
 			}else{
-				System.out.println("Ataca: "+e.getNom());
-				p.setVida(p.getVida()-(e.getForça()/2));
+				this.atacEnemic(p, r, e);
 			}
 			System.out.println(p.toString());
 			System.out.println(e.toString());
@@ -52,6 +51,21 @@ public class batalla {
 		else{p.setSort(true);
 		System.out.println("El teu jugador te sort a: "+p.isSort());}
 		
+	}
+	public void atacEnemic(personatge p, Random r,enemic e){
+		int rand = r.nextInt(3);
+		if(rand == 0){
+			System.out.println("Ataca: "+e.getNom());
+			p.setVida(p.getVida()-(e.getForça()/2));
+		}else if(rand == 1){
+			int a = r.nextInt(2);
+			if(a == 1 && e.isSort()){
+				p.setVida(p.getVida()-e.getForça());
+			}
+		}else{
+			e.setSort(true);
+			System.out.println("L'enemic te sort a: "+e.isSort());
+		}
 	}
 
 }
